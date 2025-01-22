@@ -11,7 +11,7 @@
   <title>Projet 3D</title>
 </head>
 <body>
-  <a-scene generate-clouds fog="type: linear; density: 0.005; color: #ffffff; near: 100; far: 550">
+  <a-scene generate-houses generate-clouds fog="type: linear; density: 0.005; color: #ffffff; near: 100; far: 550">
     <a-assets>
       <img id="sky" src="./assets/sky.png" alt="" />
       <img id="ground" src="./assets/earthcloudmap.jpg" alt="">
@@ -24,7 +24,8 @@
       <a-asset-item id="cloud" src="./assets/cloud_high_poly.glb"></a-asset-item>
       <a-asset-item id="tower" src="./assets/newmarket_suffolk_uk_-_jubilee_clock_tower.glb"></a-asset-item>
       <a-asset-item id="seagull" src="./assets/seagull.glb"></a-asset-item>
-      <a-assets-item id="fog" src="./assets/fog.glb"></a-assets-item>
+      <a-asset-item id="house1" src="./assets/house_1.glb"></a-asset-item>
+      <a-asset-item id="house2" src="./assets/house_2.glb"></a-asset-item>
     </a-assets>
 
     <!-- <a-camera position="0 0 0"></a-camera> -->
@@ -97,29 +98,59 @@
   </a-scene>
 
   <script>
-    AFRAME.registerComponent("generate-clouds", {
-  init: function () {
-    const models = ["#cloud"];
+//   AFRAME.registerComponent("generate-clouds", {
+//   init: function () {
+//     const models = ["#cloud"];
 
-    for (let i = 0; i < 50; i++) {
-      const cloud = document.createElement("a-entity");
+//     for (let i = 0; i < 50; i++) {
+//       const cloud = document.createElement("a-entity");
+//       const randomModel = models[Math.floor(Math.random() * models.length)];
+
+//       cloud.setAttribute("position", {
+//         x: Math.random() * 100 - 50,
+//         y: Math.random() * 40 - 10,
+//         z: Math.random() * 80 - 50
+//       });
+
+//       cloud.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
+//       cloud.setAttribute("scale", "1 1 1")
+
+
+//       cloud.setAttribute("gltf-model", randomModel);
+//       this.el.appendChild(cloud);
+//     }
+//   }
+// });
+
+AFRAME.registerComponent("generate-houses", {
+  init: function () {
+    const models = ["#house1", "#house2"];
+    const planeWidth = 174;
+    const planeHeight = 232;
+    const numHouses = 50; // Nombre de maisons
+
+    for (let i = 0; i < numHouses; i++) {
+      const house = document.createElement("a-entity");
       const randomModel = models[Math.floor(Math.random() * models.length)];
 
-      cloud.setAttribute("position", {
-        x: Math.random() * 100 - 50,
-        y: Math.random() * 40 - 10,
-        z: Math.random() * 80 - 50
+      const x = Math.random() * (planeWidth - 10) - (planeWidth / 2 - 5);
+      const z = Math.random() * (planeHeight - 10) - (planeHeight / 2 - 5);
+      
+      house.setAttribute("position", {
+        x: x,
+        y: -40,
+        z: z
       });
 
-      cloud.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
-      cloud.setAttribute("scale", "1 1 1")
+      house.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
+      house.setAttribute("scale", "3 3 3");
+      house.setAttribute("gltf-model", randomModel);
 
-
-      cloud.setAttribute("gltf-model", randomModel);
-      this.el.appendChild(cloud);
+      this.el.appendChild(house);
     }
   }
 });
+
   </script>
 </body>
 </html>
