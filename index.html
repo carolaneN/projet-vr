@@ -95,29 +95,29 @@
   </a-scene>
 
   <script>
-//     AFRAME.registerComponent("generate-clouds", {
-//   init: function () {
-//     const models = ["#cloud"];
+    AFRAME.registerComponent("generate-clouds", {
+  init: function () {
+    const models = ["#cloud"];
 
-//     for (let i = 0; i < 50; i++) {
-//       const cloud = document.createElement("a-entity");
-//       const randomModel = models[Math.floor(Math.random() * models.length)];
+    for (let i = 0; i < 50; i++) {
+      const cloud = document.createElement("a-entity");
+      const randomModel = models[Math.floor(Math.random() * models.length)];
 
-//       cloud.setAttribute("position", {
-//         x: Math.random() * 100 - 50,
-//         y: Math.random() * 40 - 10,
-//         z: Math.random() * 80 - 50
-//       });
+      cloud.setAttribute("position", {
+        x: Math.random() * 100 - 50,
+        y: Math.random() * 40 - 10,
+        z: Math.random() * 80 - 50
+      });
 
-//       cloud.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
-//       cloud.setAttribute("scale", "1 1 1")
+      cloud.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
+      cloud.setAttribute("scale", "1 1 1")
 
 
-//       cloud.setAttribute("gltf-model", randomModel);
-//       this.el.appendChild(cloud);
-//     }
-//   }
-// });
+      cloud.setAttribute("gltf-model", randomModel);
+      this.el.appendChild(cloud);
+    }
+  }
+});
   </script>
 </body>
 </html>
