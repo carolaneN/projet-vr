@@ -30,11 +30,11 @@
 
     <a-entity  id="rig" movement-controls position="0  1 -4">
 
-      <a-camera look-controls position="0 1 5">
-        <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8"></a-sound>
-        <a-sound src="./assets/ost.mp3" autoplay="true"></a-sound>
-        <a-sound src="./assets/airship.mp3" autoplay="false"></a-sound>
+      <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8"></a-sound>
+      <a-sound src="./assets/ost.mp3" autoplay="true"></a-sound>
+      <a-sound src="./assets/airship.mp3" autoplay="false"></a-sound>
 
+      <a-camera look-controls position="0 1 5">
         <a-cursor></a-cursor>
 
         <a-entity position="0 -1.5 0">
@@ -98,24 +98,22 @@
 //     AFRAME.registerComponent("generate-clouds", {
 //   init: function () {
 //     const models = ["#cloud"];
-//     const scaleMapping = {
-//       "#cloud": "1 1 1"
-//     };
 
-//     for (let i = 0; i < 10; i++) {
+//     for (let i = 0; i < 50; i++) {
 //       const cloud = document.createElement("a-entity");
 //       const randomModel = models[Math.floor(Math.random() * models.length)];
 
 //       cloud.setAttribute("position", {
 //         x: Math.random() * 100 - 50,
 //         y: Math.random() * 40 - 10,
-//         z: Math.random() * 100 - 50
+//         z: Math.random() * 80 - 50
 //       });
 
 //       cloud.setAttribute("rotation", `0 ${Math.random() * 360} 0`);
+//       cloud.setAttribute("scale", "1 1 1")
+
 
 //       cloud.setAttribute("gltf-model", randomModel);
-//       cloud.setAttribute("scale", scaleMapping[randomModel]);z
 //       this.el.appendChild(cloud);
 //     }
 //   }
