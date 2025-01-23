@@ -33,7 +33,7 @@
 
     <a-entity  id="rig" movement-controls position="0  1 -4">
 
-      <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8"></a-sound>
+      <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8" loop="true"></a-sound>
       <a-sound src="./assets/ost.mp3" autoplay="true"></a-sound>
       <a-sound src="./assets/airship.mp3" autoplay="false"></a-sound>
 
@@ -127,7 +127,7 @@ AFRAME.registerComponent("generate-houses", {
     const models = ["#house1", "#house2"];
     const planeWidth = 174;
     const planeHeight = 232;
-    const numHouses = 50; // Nombre de maisons
+    const numHouses = 40; // Nombre de maisons
 
     for (let i = 0; i < numHouses; i++) {
       const house = document.createElement("a-entity");
