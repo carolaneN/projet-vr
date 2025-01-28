@@ -27,6 +27,7 @@
       <a-asset-item id="house1" src="./assets/house_1.glb"></a-asset-item>
       <a-asset-item id="house2" src="./assets/house_2.glb"></a-asset-item>
       <a-asset-item id="tree" src="./assets/oak_tree__game_ready.glb"></a-asset-item>
+      <a-asset-item id="package" src="./assets/grungy_brown_package.glb"></a-asset-item>
     </a-assets>
 
     <!-- <a-camera position="0 0 0"></a-camera> -->
@@ -36,7 +37,7 @@
 
       
 
-      <a-camera look-controls position="0 1 26">
+      <a-camera look-controls wasd-controls position="0 1 26">
         <a-cursor></a-cursor>
         <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8" loop="true"></a-sound>
       <a-sound src="./assets/ost_town_with_ocean_view.mp3" autoplay="true" loop="true"></a-sound>
@@ -44,6 +45,7 @@
 
         <a-entity position="0 -1.5 0">
           <a-entity gltf-model="#jiji" scale=".1 .1 .1" position="0 .4 -1.5"></a-entity>
+          <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -1" rotation="0 90 0"></a-entity>
           <a-entity gltf-model="#broom" scale="4 4 4" rotation="-80 0 0"></a-entity>
         </a-entity>
 
