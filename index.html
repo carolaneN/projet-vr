@@ -11,7 +11,7 @@
   <title>Projet 3D</title>
 </head>
 <body>
-  <a-scene generate-houses generate-trees fog="type: linear; density: 0.005; color: #ffffff; near: 100; far: 550">
+  <a-scene generate-houses generate-trees>
     <a-assets>
       <img id="sky" src="./assets/sky.png" alt="" />
       <img id="ville" src="./assets/aerial-view.jpg" alt="">
@@ -57,12 +57,11 @@
                 <a-entity position="0 .1 0">
                   <a-text value="Allons livrer ce colis !" color="#000000"  position="0 1.5 -2" animation="property: opacity; to: 0; dur: 1; delay: 10000 ; easing: linear"></a-text>
                   <a-entity gltf-model="#jiji" scale=".1 .1 .1" position="0 .4 -1.5"></a-entity>
-                  <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -2.5" rotation="0 90 0"
-                  class="clickable" id="pack" cursor-listener visible="true"></a-entity>
+                  <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -2.5" rotation="0 90 0" class="clickable" id="pack" cursor-listener visible="true"></a-entity>
                   <a-entity gltf-model="#broom" scale="4 4 4" rotation="-80 0 0"></a-entity>
                 </a-entity>
         
-                <a-entity position="0 1 -5">
+                <a-entity position="0 1 -8">
                   <a-entity gltf-model="#seagull" animation-mixer loop="repeat" duration="1000" scale="1 1 1" position="-3 -1 0" rotation="0 -90 0"></a-entity>
           
                 <a-entity gltf-model="#seagull" animation-mixer loop="repeat" duration="1000" scale="1 1 1" position="-5 -1 2" rotation="0 -90 0"></a-entity>
@@ -78,36 +77,18 @@
     </a-entity>
 
     <a-entity gltf-model="#aeronef" scale="10 10 10" position="-200 85 -140" rotation="0 90 0"
-      animation="property:position; to: 340 -10 -140; dur: 25000; easing: linear;"></a-entity>
+      animation="property:position; to: 340 -10 -140; dur: 30000; easing: linear;"></a-entity>
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="-400 80 -120" rotation="0 0 0"></a-entity>
 
-      <!-- <a-entity position="0 0 0">
-        <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="-3 0 0" rotation="0 -90 0"></a-entity>
-
-      <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="-5 0 2" rotation="0 -90 0"></a-entity>
-
-      <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="-7 0 4" rotation="0 -90 0"></a-entity>
-
-      <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="3 0 0" rotation="0 -90 0"></a-entity>
-      
-      <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="5 0 2" rotation="0 -90 0"></a-entity>
-
-      <a-entity gltf-model="#seagull" scale=".8 .8 .8" position="7 0 4" rotation="0 -90 0"></a-entity>
-      </a-entity> -->
-
       <a-entity gltf-model="#cloud" scale="40 40 40" position="35 15 -120" rotation="0 0 0"></a-entity>
 
+      <a-text value="Super, merci !" color="#fff" id="thanks" position="52 5 -119" rotation="0 -90 0" visible="false"></a-text>
       <a-entity gltf-model="#girl" id="target" class="clickable" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
-      <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0"
-           id="pack2" cursor-listener visible="false"></a-entity>
+      <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0" id="pack2" cursor-listener visible="false"></a-entity>
+      <a-scene>
 
       <a-entity gltf-model="#tower" scale="6.5 6.5 6.5" position="60 10 -120"></a-entity>
-
-      <!-- <a-entity gltf-model="#fog" scale="1 1 1" posiion="0 0 0" rotation="0 0 0"></a-entity> -->
-
-      <!-- <a-entity geometry="primitive:plane; width:232; height:174" position="0 -40 -30" rotation="-90 90 0" material="src: #ville">
-      </a-entity> -->
 
       <a-entity geometry="primitive:plane; width:232; height:174" position="0 -40 -30" rotation="-90 90 0" material="src: #ground; normalMap: #groundNormal">
       </a-entity>
@@ -181,10 +162,12 @@ AFRAME.registerComponent("generate-trees", {
     init: function () {
       let packs = document.getElementById("pack");
       let packs2 = document.getElementById("pack2");
+      let thanks = document.getElementById("thanks");
       this.el.addEventListener("click", function () {
         if (packs) {
           packs.setAttribute("visible", "false");
           packs2.setAttribute("visible", "true");
+          thanks.setAttribute("visible", "true");
         }
       });
     }
