@@ -29,6 +29,8 @@
       <a-asset-item id="tree" src="./assets/oak_tree__game_ready.glb"></a-asset-item>
       <a-asset-item id="package" src="./assets/grungy_brown_package.glb"></a-asset-item>
       <a-asset-item id="girl" src="./assets/stylized_girl_heynerdtm.glb"></a-asset-item>
+      <a-asset-item id="crow" src="./assets/low_poly_crow.glb"></a-asset-item>
+      <a-asset-item id="painting" src="./assets/painting_lowpoly.glb"></a-asset-item>
     </a-assets>
 
     <!-- <a-camera position="0 0 0"></a-camera> -->
@@ -55,9 +57,10 @@
                 <a-sound src="./assets/airship.mp3" autoplay="false"></a-sound>
         
                 <a-entity position="0 .1 0">
-                  <a-text value="Allons livrer ce colis !" color="#000000"  position="0 1.5 -2" animation="property: opacity; to: 0; dur: 1; delay: 10000 ; easing: linear"></a-text>
+                  <a-text value="Allons livrer ce colis pour la jeune fille de la tour !" color="#000000"  position="0 1.5 -2" animation="property: opacity; to: 0; dur: 1; delay: 10000 ; easing: linear"></a-text>
                   <a-entity gltf-model="#jiji" scale=".1 .1 .1" position="0 .4 -1.5"></a-entity>
-                  <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -2.5" rotation="0 90 0" class="clickable" id="pack" cursor-listener visible="true"></a-entity>
+                  <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -2.5" rotation="0 90 0"
+                  class="clickable" id="pack" cursor-listener visible="true"></a-entity>
                   <a-entity gltf-model="#broom" scale="4 4 4" rotation="-80 0 0"></a-entity>
                 </a-entity>
         
@@ -77,16 +80,25 @@
     </a-entity>
 
     <a-entity gltf-model="#aeronef" scale="10 10 10" position="-200 85 -140" rotation="0 90 0"
-      animation="property:position; to: 340 -10 -140; dur: 30000; easing: linear;"></a-entity>
+      animation="property:position; to: 340 -10 -140; dur: 25000; easing: linear;"></a-entity>
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="-400 80 -120" rotation="0 0 0"></a-entity>
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="35 15 -120" rotation="0 0 0"></a-entity>
 
-      <a-text value="Super, merci !" color="#fff" id="thanks" position="52 5 -119" rotation="0 -90 0" visible="false"></a-text>
+      <a-text value="Super, merci ! Peux-tu apporter cette peinture au corbeau non loin ?" color="#fff" id="thanks" position="52 5 -119" rotation="0 -90 0" visible="false"></a-text>
+
       <a-entity gltf-model="#girl" id="target" class="clickable" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
-      <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0" id="pack2" cursor-listener visible="false"></a-entity>
-      <a-scene>
+      <a-entity gltf-model="#painting" id="paints" scale="1 1 1" position="53 2 -121" rotation="0 -90 0" class="clickable" painting-listener visible="true" ></a-entity>
+
+      <a-text value="Croa ! Croa !" color="#fff" id="thanks" position="52 5 -119" rotation="0 -90 0" visible="false"></a-text>
+
+      <a-entity gltf-model="#crow" scale=".05 .05 .05" position="63 1 -112" rotation="0 0 0" id="raven" class="clickable" paintingDelivered-listener></a-entity>
+
+      <a-entity gltf-model="#painting" id="paintDelivered" scale="1 1 1" position="60 2 -112" rotation="0 0 0" class="clickable" paintingDelivered-listener visible="false" ></a-entity>
+
+      <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0"
+           id="pack2" cursor-listener visible="false"></a-entity>
 
       <a-entity gltf-model="#tower" scale="6.5 6.5 6.5" position="60 10 -120"></a-entity>
 
@@ -173,6 +185,29 @@ AFRAME.registerComponent("generate-trees", {
     }
   })
 
+  AFRAME.registerComponent("painting-listener", {
+    init: function () {
+      let paint = document.getElementById("paints");
+      this.el.addEventListener("click", function () {
+        if (paint) {
+          paint.setAttribute("visible", "false");
+
+        }
+      });
+    }
+  })
+
+  AFRAME.registerComponent("paintingDelivered-listener", {
+    init: function () {
+      let paintingDelivered = document.getElementById("paintDelivered");
+      let crow = document.getElementById("raven");
+      this.el.addEventListener("click", function () {
+        if (crow) {
+          paintingDelivered.setAttribute("visible", "true");
+        }
+      });
+    }
+  })
 
   </script>
 </body>
