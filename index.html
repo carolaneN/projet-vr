@@ -41,12 +41,12 @@
       <a-entity
           laser-controls="hand: left"
           raycaster="objects: .clickable; far: 20; showLine: true"
-          position="-0.5 1.5 -0.5"
+          position="-0.5 1.5 -2"
         ></a-entity>
         <a-entity
           laser-controls="hand: right"
           raycaster="objects: .clickable; far: 20; showLine: true"
-          position="0.5 1.5 -0.5"
+          position="0.5 1.5 -2"
         ></a-entity>
 
                 <!-- <a-cursor></a-cursor> -->
@@ -98,9 +98,9 @@
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="35 15 -120" rotation="0 0 0"></a-entity>
 
-      <a-entity gltf-model="#girl" id="girl" class="clickable" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
+      <a-entity gltf-model="#girl" id="target" class="clickable" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
       <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0"
-          class="clickable" id="pack2" cursor-listener visible="false"></a-entity>
+           id="pack2" cursor-listener visible="false"></a-entity>
 
       <a-entity gltf-model="#tower" scale="6.5 6.5 6.5" position="60 10 -120"></a-entity>
 
@@ -180,25 +180,16 @@ AFRAME.registerComponent("generate-trees", {
   AFRAME.registerComponent("cursor-listener", {
     init: function () {
       let packs = document.getElementById("pack");
+      let packs2 = document.getElementById("pack2");
       this.el.addEventListener("click", function () {
         if (packs) {
           packs.setAttribute("visible", "false");
-        }
-      });
-    }
-  })
-
-  AFRAME.registerComponent("cursor-listener", {
-    init: function () {
-      let packs2 = document.getElementById("pack2");
-      let girl = document.getElementById("girl");
-      this.el.addEventListener("click", function () {
-        if (girl) {
           packs2.setAttribute("visible", "true");
         }
       });
     }
   })
+
 
   </script>
 </body>
