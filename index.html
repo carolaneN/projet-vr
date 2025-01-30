@@ -18,6 +18,10 @@
       <img id="ground" src="./assets/ground/grass_02_base_2k.png" alt="">
       <img id="groundNormal" src="./assets/ground/grass_02_normal_dx_2k.png" alt="">
 
+      <audio id="extrait_paint" src="./assets/extrait_peinture.mp3" preload="auto"></audio>
+      <audio id="extrait_velo" src="./assets/extrait vélo.mp3" preload="auto"></audio>
+      <audio id="extrait_aeronef" src="./assets/extrait_aeronef.mp3" preload="auto"></audio>
+
       <a-asset-item id="aeronef" src="./assets/airship_spirit_of_adventure.glb"></a-asset-item>
       <a-asset-item id="broom" src="./assets/broom.glb"></a-asset-item>
       <a-asset-item id="jiji" src="./assets/jiji.glb"></a-asset-item>
@@ -31,12 +35,13 @@
       <a-asset-item id="girl" src="./assets/stylized_girl_heynerdtm.glb"></a-asset-item>
       <a-asset-item id="crow" src="./assets/low_poly_crow.glb"></a-asset-item>
       <a-asset-item id="painting" src="./assets/painting_lowpoly.glb"></a-asset-item>
+      <a-asset-item id="velo" src="./assets/bycicle_ussr.glb"></a-asset-item>
     </a-assets>
 
     <!-- <a-camera position="0 0 0"></a-camera> -->
     
 
-    <a-entity  id="rig" movement-controls position="0  1 -25" >
+    <a-entity  id="rig" movement-controls="speed: 0.8" position="0  1 -25" >
       <a-entity camera look-controls wasd-controls position="0 1 26"></a-entity>
 
 
@@ -54,10 +59,15 @@
                 <!-- <a-cursor></a-cursor> -->
                 <a-sound src="./assets/seagull.mp3" autoplay="true" volume=".8" loop="true"></a-sound>
                 <a-sound src="./assets/ost_town_with_ocean_view.mp3" autoplay="true" loop="true"></a-sound>
-                <a-sound src="./assets/airship.mp3" autoplay="false"></a-sound>
+                <a-sound src="./assets/airship.mp3" autoplay="true" volume="1"></a-sound>
+                <a-sound src="./assets/extrait vélo.mp3" autoplay="false"></a-sound>
+                <a-sound src="./assets/extrait_peinture.mp3" autoplay="false"></a-sound>
         
                 <a-entity position="0 .1 0">
                   <a-text value="Allons livrer ce colis pour la jeune fille de la tour !" color="#000000"  position="0 1.5 -2" animation="property: opacity; to: 0; dur: 1; delay: 10000 ; easing: linear"></a-text>
+
+                  <a-text value="Mais c'est l'engin de notre ami ! Que fait-il aussi haut dans le ciel ?" id="afterBycicle" color="#000000"  position="0 1.5 -2" visible="false" animation="property: opacity; to: 0; dur: 1; delay: 10000 ; easing: linear"></a-text>
+
                   <a-entity gltf-model="#jiji" scale=".1 .1 .1" position="0 .4 -1.5"></a-entity>
                   <a-entity gltf-model="#package" scale=".5 .5 .5" position="0 .5 -2.5" rotation="0 90 0"
                   class="clickable" id="pack" cursor-listener visible="true"></a-entity>
@@ -79,8 +89,7 @@
                 </a-entity>
     </a-entity>
 
-    <a-entity gltf-model="#aeronef" scale="10 10 10" position="-200 85 -140" rotation="0 90 0"
-      animation="property:position; to: 340 -10 -140; dur: 25000; easing: linear;"></a-entity>
+    <a-entity gltf-model="#aeronef" scale="10 10 10" position="-200 85 -140" rotation="0 90 0" class="clickable" animation="property:position; to: 180 -10 -140; dur: 25000; easing: linear;" sound="src: #extrait_aeronef; on: click; volume: 12; positional: false"></a-entity>
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="-400 80 -120" rotation="0 0 0"></a-entity>
 
@@ -88,14 +97,17 @@
 
       <a-text value="Super, merci ! Peux-tu apporter cette peinture au corbeau non loin ?" color="#fff" id="thanks" position="52 5 -119" rotation="0 -90 0" visible="false"></a-text>
 
-      <a-entity gltf-model="#girl" id="target" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
-      <a-entity gltf-model="#painting" id="paints" scale="1 1 1" position="53 2 -121" rotation="0 -90 0" class="clickable" painting-listener visible="true" ></a-entity>
+      <a-entity gltf-model="#girl" scale="1 1 1" position="53.5 2 -119" rotation="0 -90 0"></a-entity>
 
-      <a-text value="Croa ! Croa !" color="#fff" id="croa" position="63.5 2 -112" rotation="0 0 0" paintingDelivered-listener visible="false"></a-text>
+      <a-entity gltf-model="#painting" id="paints" scale="1 1 1" position="53 2 -121" rotation="0 -90 0" class="clickable" painting-listener visible="true" sound="src: #extrait_paint; on: click; volume: 12; positional: false"></a-entity>
 
-      <a-entity gltf-model="#crow" scale=".05 .05 .05" position="63 1 -112" rotation="0 0 0" id="raven" class="clickable" paintingDelivered-listener></a-entity>
+      <a-text value="Merci ! J'ai vu une byciclette non loin ? Comment est-ce possible ? Vous devriez aller voir !" color="#000000" id="croa" position="63.5 2 -109" rotation="0 0 0" visible="false"></a-text>
 
-      <a-entity gltf-model="#painting" id="paintDelivered" scale="1 1 1" position="60 2 -112" rotation="0 0 0" paintingDelivered-listener visible="false" ></a-entity>
+      <a-entity gltf-model="#crow" scale=".05 .05 .05" position="63 1 -112" rotation="0 0 0" id="raven" class="clickable" paintingdelivered-listener visible="true"></a-entity>
+
+      <a-entity gltf-model="#painting" id="paintDelivered" scale="1 1 1" position="60 2 -112" rotation="0 0 0" visible="false" ></a-entity>
+
+      <a-entity gltf-model="#velo" scale=".3 .3 .3" position="69 2.4 -120" rotation="0 90 0" id="velo" class="clickable" bycicle-listener visible="true" sound="src: #extrait_velo; on: click; volume: 21; positional: false"></a-entity>
 
       <a-entity gltf-model="#package" scale=".5 .5 .5" position="53.5 4 -119" rotation="0 90 0"
            id="pack2" cursor-listener visible="false"></a-entity>
@@ -188,24 +200,40 @@ AFRAME.registerComponent("generate-trees", {
   AFRAME.registerComponent("painting-listener", {
     init: function () {
       let paint = document.getElementById("paints");
+      let soundEntity = this.el;
       this.el.addEventListener("click", function () {
         if (paint) {
+          console.log("Clic détecté !");
           paint.setAttribute("visible", "false");
-
         }
       });
     }
   })
 
-  AFRAME.registerComponent("paintingDelivered-listener", {
+  AFRAME.registerComponent("paintingdelivered-listener", {
     init: function () {
       let paintingDelivered = document.getElementById("paintDelivered");
       let crow = document.getElementById("raven");
-      let croa = document.getElementById("croa");
+      let text = document.getElementById("croa");
       this.el.addEventListener("click", function () {
         if (crow) {
+          console.log("Clic détecté !");
           paintingDelivered.setAttribute("visible", "true");
-          croa.setAttribute("visible", "true");
+          text.setAttribute("visible", "true");
+        }
+      });
+    }
+  })
+
+  AFRAME.registerComponent("bycicle-listener", {
+    init: function () {
+      let byciclette = document.getElementById("velo");
+      let text = document.getElementById("afterBycicle");
+      this.el.addEventListener("click", function () {
+        if (byciclette) {
+          console.log("Clic détecté !");
+          byciclette.setAttribute("visible", "false");
+          afterBycicle.setAttribute("visible", "true");
         }
       });
     }
