@@ -89,7 +89,12 @@
                 </a-entity>
     </a-entity>
 
-    <a-entity gltf-model="#aeronef" scale="10 10 10" position="-200 85 -140" rotation="0 90 0" class="clickable" animation="property:position; to: 180 -10 -140; dur: 25000; easing: linear;" sound="src: #extrait_aeronef; on: click; volume: 12; positional: false"></a-entity>
+
+    <a-entity position="-200 85 -140" animation="property:position; to: 180 -10 -140; dur: 25000; easing: linear;">
+      <a-entity gltf-model="#aeronef" scale="10 10 10" position="0 0 0" rotation="0 90 0"></a-entity>
+
+      <a-entity geometry="primitive:plane; width:.5; height:.5" position="-50 10 12" scale="5 5 5" class="clickable" sound="src: #extrait_aeronef; on: click; volume: 12; positional: false"></a-entity>
+    </a-entity>
 
       <a-entity gltf-model="#cloud" scale="40 40 40" position="-400 80 -120" rotation="0 0 0"></a-entity>
 
@@ -238,6 +243,31 @@ AFRAME.registerComponent("generate-trees", {
       });
     }
   })
+
+  document.addEventListener("click", () => {
+  if (AFRAME.scenes[0].audioListener.context.state === "suspended") {
+    AFRAME.scenes[0].audioListener.context.resume().then(() => {
+      console.log("🔊 Audio activé !");
+    });
+  }
+}, { once: true }); // S’exécute une seule fois
+
+AFRAME.registerComponent("click-sound", {
+  init: function () {
+    this.el.addEventListener("click", () => {
+      let sound = this.el.components.sound;
+      if (sound && sound.data && sound.data.src) {
+        if (!sound.isPlaying) {
+          console.log("🔊 Lecture du son !");
+          sound.playSound();
+        }
+      } else {
+        console.warn("⏳ Son pas encore chargé...");
+      }
+    });
+  },
+});
+
 
   </script>
 </body>
